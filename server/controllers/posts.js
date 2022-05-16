@@ -45,5 +45,5 @@ export const likePost = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with this id');
     const post = await PostMessage.findById(_id);
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, { likeCount: post.likeCount + 1 }, { new: true })
-    res.json(updatePost)
+    res.json(updatedPost) // I found it important to return the response of updatedPost , and that effect to update the interface (likes count) without page refresh
 }
