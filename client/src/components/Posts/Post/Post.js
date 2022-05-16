@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../actions/posts";
+import { deletePost, likePost } from "../../../actions/posts";
 import moment from "moment";
 
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@material-ui/core";
@@ -43,14 +43,14 @@ const Post = ({ post, setCurrentId }) => {
             </Typography>
 
             <CardContent >
-                <Typography variant="caption" gutterBottom >
+                <Typography component={'p'} variant="body2" color="textSecondary">
                     {post.message}
                 </Typography>
             </CardContent>
 
             <CardActions className={classes.cardActions} >
 
-                <Button size="small" color="primary" onClick={() => { }}>
+                <Button size="small" color="primary" onClick={() => { dispatch(likePost(post._id)) }}>
                     <ThumbUpAltIcon fontSize="small" />
                     {`Like ${post.likeCount}`}
                 </Button>
