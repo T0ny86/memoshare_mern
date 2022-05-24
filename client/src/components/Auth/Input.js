@@ -15,7 +15,7 @@ export const Input = ({ name, handleChange, label, half, autoFocus, type = 'text
                 type={type}
                 required
                 fullWidth
-                InputProps={name === 'password' && {
+                InputProps={name === 'password' ? {
                     endAdornment: (
                         <InputAdornment position='end'>
                             <IconButton onClick={handleShowPassword}>
@@ -23,7 +23,7 @@ export const Input = ({ name, handleChange, label, half, autoFocus, type = 'text
                             </IconButton>
                         </InputAdornment>
                     )
-                }
+                } : null
                 }
             />
         </Grid>
