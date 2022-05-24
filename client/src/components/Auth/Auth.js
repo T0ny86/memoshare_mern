@@ -7,6 +7,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import GoogleIcon from './GoogleIcon'
 import useStyles from "./styles"
 import Input from "./Input"
+import { signup , signin} from "../../actions/auth"
 
 const initialState = {
     firstName: '', lastName: '', email: '', password: '', confirmPassword: ''
@@ -25,10 +26,20 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(formData)
-     }
+        // console.log(formData)
+        if (isSignup) {
+            dispatch(signup(formData, history))
+        } else {
+            dispatch(signin(formData, history))
 
-    const handleChange = () => { }
+        }
+    }
+
+    const handleChange = (e) => {
+        // [e.target.name] :: is a placeholder for 'key' name in formData object
+        // so we can match each key with his value, fo all elements in form
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
 
     const switchMode = () => {
         setIsSignup((prevState) => !prevState)
