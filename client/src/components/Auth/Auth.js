@@ -8,15 +8,25 @@ import GoogleIcon from './GoogleIcon'
 import useStyles from "./styles"
 import Input from "./Input"
 
+const initialState = {
+    firstName: '', lastName: '', email: '', password: '', confirmPassword: ''
+}
+
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const classes = useStyles();
-    const [showPassword, setShowPassword] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showPassword, setShowPassword] = useState(false)
+    const [formData, setFormData] = useState(initialState)
+
+
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
 
-    const handleSubmit = () => { }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData)
+     }
 
     const handleChange = () => { }
 
