@@ -42,8 +42,19 @@ export const updatePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
     const { id: _id } = req.params;
+    if (!req.userId) return res.json({ message: 'Unauthenticated' })
+
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with this id');
     const post = await PostMessage.findById(_id);
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, { likeCount: post.likeCount + 1 }, { new: true })
+    //  if there is index => the user has already added his LIKE
+    // and next click => remove the like (dislike) LikesCount-1
+    const index = post.likes.findIndex((id) => id === String(req.userId))
+    if (index === -1) {
+        post.likes.push(req.userId)
+    } else {
+        post.likes = post.likes.filter((id) => id !== String(req.userId))
+    }
+    // const updatedPost = await PostMessage.findByIdAndUpdate(_id, { likeCount: post.likeCount + 1 }, { new: true })
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true })
     res.json(updatedPost) // I found it important to return the response of updatedPost , and that effect to update the interface (likes count) without page refresh
 }
