@@ -4,7 +4,7 @@ MERN Fullstack social media App, photo shearing, authentication, membership
 ![loggedin](https://user-images.githubusercontent.com/76870891/170997081-d483345d-361f-4003-ac63-bca29c465f06.png)
 
 ## some tools:
-React , Matiral-ui , Redux, axios 
+React , Material-ui , Redux, Axios , Moment
 
 Express , Mongodb (Atlas), bcrypt , JWT
 
