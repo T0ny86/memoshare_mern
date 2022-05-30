@@ -6,7 +6,7 @@ import User from "../models/user.js"
 export const signin = async (req, res) => {
     const { email, password } = req.body;
     try {
-
+console.log('try to signin')
         const existingUser = await User.findOne({ email })
         if (!existingUser) return res.status(404).json({ message: "User doesn't exist." })
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password)
@@ -24,6 +24,7 @@ export const signin = async (req, res) => {
 
 export const signup = async (req, res) => {
     const { email, password, confirmPassword, firstName, lastName } = req.body
+    console.log('try to signup')
 
     try {
         const existingUser = await User.findOne({ email })
